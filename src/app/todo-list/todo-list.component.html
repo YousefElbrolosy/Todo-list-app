@@ -1,0 +1,149 @@
+<section class="intro">
+
+    <div class="mask d-flex align-items-center h-100 mt-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="card bg-dark shadow-2-strong">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-dark table-borderless mb-0">
+                                    <thead>
+                                        <th scope="col"></th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">Task</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr scope="row" *ngFor="let task of toDoList; let i = index">
+                                            <td>
+                                                <input type="checkbox" class="btn-check" [id]="'btncheck'+i">
+                                                <label class="btn btn-outline-primary" [for]="'btncheck'+i"></label>
+                                            </td>
+                                            <td>
+                                                <div *ngIf="editedIndex.includes(i)&& !edited.includes(i);else date">
+                                                    <input [(ngModel)]="task.dateAdded" class="form-control" />
+                                                </div>
+
+                                                <ng-template #date>
+                                                    {{task.dateAdded}}
+                                                </ng-template>
+                                            </td>
+                                            <td>
+                                                <div *ngIf="editedIndex.includes(i)&& !edited.includes(i);else time">
+                                                    <input [(ngModel)]="task.timeAdded" class="form-control" />
+                                                </div>
+
+                                                <ng-template #time>
+                                                    {{task.timeAdded}}
+                                                </ng-template>
+
+
+                                            </td>
+                                            <td>
+                                                <div *ngIf="editedIndex.includes(i) && !edited.includes(i);else text">
+                                                    <input [(ngModel)]="task.taskText" class="form-control" />
+                                                </div>
+
+                                                <ng-template #text>
+                                                    {{task.taskText}}
+                                                </ng-template>
+                                            </td>
+                                            <td>
+                                                <div *ngIf="editedIndex.includes(i) && !edited.includes(i)">
+                                                    <button class="btn btn-link" (click)="done(i)">Done</button>
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-primary" (click)="edit(i)">Edit</button>
+                                            </td>
+
+                                            <td>
+                                                <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<div class="d-flex justify-content-center mt-5">
+    <button class="btn btn-primary" routerLink="addtask">Add New Task</button>
+</div>
+
+<router-outlet></router-outlet>
+
+
+<!--
+<table *ngIf="toDoList.length>=1;else addNew" class="table">
+    <thead>
+        <th></th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Task</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let task of toDoList; let i = index">
+            <td>
+                <input type="checkbox" class="btn-check" [id]="'btncheck'+i">
+                <label class="btn btn-outline-primary" [for]="'btncheck'+i"></label>
+            </td>
+            <td>
+                <div *ngIf="editedIndex.includes(i)&& !edited.includes(i);else date">
+                    <input [(ngModel)]="task.dateAdded" class="form-control" />
+                </div>
+
+                <ng-template #date>
+                    {{task.dateAdded}}
+                </ng-template>
+            </td>
+            <td>
+                <div *ngIf="editedIndex.includes(i)&& !edited.includes(i);else time">
+                    <input [(ngModel)]="task.timeAdded" class="form-control" />
+                </div>
+
+                <ng-template #time>
+                    {{task.timeAdded}}
+                </ng-template>
+
+
+            </td>
+            <td>
+                <div *ngIf="editedIndex.includes(i) && !edited.includes(i);else text">
+                    <input [(ngModel)]="task.taskText" class="form-control" />
+                </div>
+
+                <ng-template #text>
+                    {{task.taskText}}
+                </ng-template>
+            </td>
+            <td>
+                <div *ngIf="editedIndex.includes(i) && !edited.includes(i)">
+                    <button (click)="done(i)">done</button>
+                </div>
+
+            </td>
+            <td>
+                <button (click)="edit(i)">edit</button>
+            </td>
+
+            <td>
+                <button (click)="delete(i)">delete</button>
+            </td>
+
+        </tr>
+    </tbody>
+
+</table>
+<ng-template #addNew>
+    <h1 class="text-center">No Data</h1>
+</ng-template>
+-->
