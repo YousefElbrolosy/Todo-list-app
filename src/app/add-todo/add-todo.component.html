@@ -36,3 +36,5 @@
 
 <button *ngIf="newTask.timeAdded != '' && newTask.dateAdded && newTask.taskText!= '' " class="btn btn-primary mt-4 mb-4"
   (click)="submit()" type="submit" routerLink="../">Submit</button>
+  <button class="btn btn-danger mt-4 mb-4"
+  (click)="submit()" type="submit" routerLink="../">Close</button>
